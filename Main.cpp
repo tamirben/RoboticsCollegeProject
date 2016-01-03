@@ -21,6 +21,7 @@ int main() {
 	const char *outputFile = "newRoboticLabMap.png";
 	map.saveMapToFile(outputFile);
 	map.buildFineGrid();
+	map.buildCoarseGrid();
 	return 0;
 }
 

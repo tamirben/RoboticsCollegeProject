@@ -8,6 +8,7 @@
 #ifndef MAP_H_
 #define MAP_H_
 #define ROBOT_SIZE 12
+#define ROBOT_SIZE_DOUBLE 24
 #include <vector>
 using namespace std;
 

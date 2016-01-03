@@ -111,6 +111,38 @@ bool Map::checkIfCellIsOccupied(int i, int j, vector<unsigned char>& image) {
 		return true;
 	return false;
 }
+void Map::buildCoarseGrid() {
+		cout << "map size: " << mapWidth / ROBOT_SIZE_DOUBLE << ","
+			<< mapHeight / ROBOT_SIZE_DOUBLE<< endl;
+	int _newMapHeight = mapHeight / (ROBOT_SIZE_DOUBLE);
+	int _newMapWidth = mapWidth / (ROBOT_SIZE_DOUBLE);
+
+	coarseGrid.resize(_newMapHeight);
+
+	for (int i = 0; i < _newMapHeight; i++)
+		coarseGrid[i].resize(_newMapWidth);
+
+	for (unsigned int p = 0; p < (mapHeight-ROBOT_SIZE_DOUBLE); p += ROBOT_SIZE_DOUBLE) { // mapHeight-ROBOT = so that the iterations w'ont go out of
+		//of border.
+		for (unsigned int k = 0; k < (mapWidth-ROBOT_SIZE_DOUBLE); k += ROBOT_SIZE_DOUBLE) {
+			bool flag = false;
+			for (int i = 0; i < ROBOT_SIZE_DOUBLE; i++) {
+				for (int j = 0; j < ROBOT_SIZE_DOUBLE; j++) {
+					if (checkIfCellIsOccupied(i + p, j + k, *empimg))
+						flag = true;
+				}
+			}
+
+			coarseGrid[p/( ROBOT_SIZE_DOUBLE)][k /(ROBOT_SIZE_DOUBLE) ] = flag;
+		}
+	}
+
+	printGrid(coarseGrid);
+}
+
+
+
+
 
 void Map::printGrid(const Grid &grid) const {
 	int rows = grid.size();
