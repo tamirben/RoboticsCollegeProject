@@ -9,9 +9,10 @@
 
 #ifndef STC_H_
 #define STC_H_
-#define access(X,Y) ((X) < (Y) ? (true) : (false))
+#define access(X,Y) X < Y ? 1 : 0
 #include "Map.h"
 #include "Node.h"
+#include <c++/4.8.4/iostream>
 using namespace std;
 
 typedef pair<int, int> Position; //The Position will have to be the 

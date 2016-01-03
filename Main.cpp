@@ -9,7 +9,7 @@
  */
 
 #include "Map.h"
-
+#include "STC.h"
 int main() {
 	float mapResolution = 0.025;
 	float robotSize = 0.3;
@@ -22,6 +22,8 @@ int main() {
 	map.saveMapToFile(outputFile);
 	map.buildFineGrid();
 	map.buildCoarseGrid();
+	STC stc(map,pair<int,int>(10,17));
+	stc.buildSpanningTree();
 	return 0;
 }
 
