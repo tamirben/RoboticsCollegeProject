@@ -19,10 +19,11 @@ private:
 	Map &map;
 	vector<vector< Node *> > graph;
 	Node *startNode;
-
+// each node is 24*24 pixels - in order to move from 
+// one node is 24 pixels.
 	void buildGraph();
 	void DFS(Node *node);
-
+	void getNeighbors(Node* node);
 public:
 	STC(Map &map, Position startPos);
 	void buildSpanningTree();

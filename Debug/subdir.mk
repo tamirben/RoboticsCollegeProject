@@ -10,7 +10,8 @@ CPP_SRCS += \
 ../Node.cpp \
 ../Robot.cpp \
 ../STC.cpp \
-../lodepng.cpp 
+../lodepng.cpp \
+../pngUtil.cpp 
 
 OBJS += \
 ./Driver.o \
@@ -19,7 +20,8 @@ OBJS += \
 ./Node.o \
 ./Robot.o \
 ./STC.o \
-./lodepng.o 
+./lodepng.o \
+./pngUtil.o 
 
 CPP_DEPS += \
 ./Driver.d \
@@ -28,7 +30,8 @@ CPP_DEPS += \
 ./Node.d \
 ./Robot.d \
 ./STC.d \
-./lodepng.d 
+./lodepng.d \
+./pngUtil.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

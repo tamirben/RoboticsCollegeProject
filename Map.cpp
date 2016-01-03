@@ -10,7 +10,7 @@
 #include <iostream>
 
 Map::Map(float mapResolution, float robotSize) :
-	mapResolution(mapResolution), robotSize(robotSize) {
+		mapResolution(mapResolution), robotSize(robotSize) {
 
 	robotSizeInCells = robotSize / mapResolution;
 	inflationRadius = 0.3 * robotSizeInCells;
@@ -18,7 +18,7 @@ Map::Map(float mapResolution, float robotSize) :
 
 void Map::saveMapToFile(const char* filePath) {
 	// Example: Color the first 10 rows of the image with red
-	this->empimg = new vector<unsigned char> (image);
+	this->empimg = new vector<unsigned char>(image);
 	for (int i = 0; i < mapHeight; i++) {
 		for (int j = 0; j < mapWidth; j++) {
 			if (checkIfCellIsOccupied(i, j, image) && boundMap(i, j, *empimg)) {
@@ -46,8 +46,8 @@ void Map::colorCell(int i, int j, vector<unsigned char>& image) {
 bool Map::boundMap(int i, int j, vector<unsigned char> image) {
 
 	int c = (i * mapWidth + j) * 4;
-	if (((i - 1) != NULL) && ((j - 1) < mapWidth) && ((i + 1) != NULL) && (((j
-			+ 1)) < mapWidth))
+	if (((i - 1) != NULL) && ((j - 1) < mapWidth) && ((i + 1) != NULL)
+			&& (((j + 1)) < mapWidth))
 		return true;
 
 	return false;
@@ -71,21 +71,36 @@ void Map::loadMapFromFile(const char* filePath) {
 
 	printGrid(map);
 }
+//Fine greed - each cell is in the side of the robot - 12*12 p
+//which means that every 12*12 cell from 0,0 with a true in the 
+//original grid is sequencly true in the new grid (fine grid)
 void Map::buildFineGrid() {
-	cout << "map size: " << mapWidth << "," << mapHeight << endl;
+	cout << "map size: " << mapWidth / ROBOT_SIZE << ","
+			<< mapHeight / ROBOT_SIZE << endl;
+	int _newMapHeight = mapHeight / ROBOT_SIZE;
+	int _newMapWidth = mapWidth / ROBOT_SIZE;
+	fineGrid.resize(_newMapHeight);
 
-	fineGrid.resize(mapHeight);
-	for (int i = 0; i < mapHeight; i++)
-		fineGrid[i].resize(mapWidth);
+	for (int i = 0; i < _newMapHeight; i++)
+		fineGrid[i].resize(_newMapWidth);
 
-	for (int i = 0; i < mapHeight; i++) {
-		for (int j = 0; j < mapWidth; j++) {
-			fineGrid[i][j] = checkIfCellIsOccupied(i, j, *empimg);
+	for (unsigned int p = 0; p < (mapHeight-ROBOT_SIZE); p += ROBOT_SIZE) { // mapHeight-ROBOT = so that the iterations w'ont go out of
+		//of border.
+		for (unsigned int k = 0; k < (mapWidth-ROBOT_SIZE); k += ROBOT_SIZE) {
+			bool flag = false;
+			for (int i = 0; i < ROBOT_SIZE; i++) {
+				for (int j = 0; j < ROBOT_SIZE; j++) {
+					if (checkIfCellIsOccupied(i + p, j + k, *empimg))
+						flag = true;
+				}
+			}
+
+			fineGrid[p / ROBOT_SIZE][k / ROBOT_SIZE] = flag;
 		}
 	}
+
 	printGrid(fineGrid);
 }
-
 bool Map::checkIfCellIsOccupied(int i, int j, vector<unsigned char>& image) {
 	int c = (i * mapWidth + j) * 4;
 	int r = image[c];
@@ -110,6 +125,9 @@ void Map::printGrid(const Grid &grid) const {
 }
 
 Map::~Map() {
-delete empimg;
+	delete empimg;
 }
+
+
+
 
