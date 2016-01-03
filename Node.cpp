@@ -1,11 +1,11 @@
 /*
  * Node.cpp
  *
- *  Created on: Dec 9, 2015
- *      Author: colman
+ *  Created on: 1 Jan, 2016
+ *      Author: greatwing - mor.zusmann@gmail.com
  */
-
 #include "Node.h"
+
 
 Node::Node(int row, int col) : row(row), col(col), visited(false) {
 

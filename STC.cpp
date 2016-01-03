@@ -1,8 +1,8 @@
 /*
  * STC.cpp
  *
- *  Created on: Dec 9, 2015
- *      Author: colman
+ *  Created on: Jan 1, 2016
+ *      Author: greatwing - mor.zusmann@gmail.com
  */
 
 #include "STC.h"

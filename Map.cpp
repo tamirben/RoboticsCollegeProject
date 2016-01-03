@@ -1,8 +1,8 @@
 /*
  * Map.cpp
  *
- *  Created on: Nov 18, 2015
- *      Author: colman
+ *  Created on: 1 Jan, 2016
+ *      Author: greatwing - mor.zusmann@gmail.com
  */
 
 #include "Map.h"
