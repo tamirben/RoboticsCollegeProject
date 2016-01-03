@@ -43,7 +43,7 @@ void Map::colorCell(int i, int j, vector<unsigned char>& image) {
 	}
 }
 
-bool Map::boundMap(int i, int j, vector<unsigned char> image) {
+bool Map::boundMap(int i, int j, vector<unsigned char> image) const{
 
 	int c = (i * mapWidth + j) * 4;
 	if (((i - 1) != NULL) && ((j - 1) < mapWidth) && ((i + 1) != NULL)
@@ -53,7 +53,7 @@ bool Map::boundMap(int i, int j, vector<unsigned char> image) {
 	return false;
 }
 
-void Map::loadMapFromFile(const char* filePath) {
+void Map::loadMapFromFile(const char* filePath)  {
 
 	lodepng::decode(image, mapWidth, mapHeight, filePath);
 
@@ -101,7 +101,7 @@ void Map::buildFineGrid() {
 
 	printGrid(fineGrid);
 }
-bool Map::checkIfCellIsOccupied(int i, int j, vector<unsigned char>& image) {
+bool Map::checkIfCellIsOccupied(int i, int j, vector<unsigned char>& image) const {
 	int c = (i * mapWidth + j) * 4;
 	int r = image[c];
 	int g = image[c + 1];
@@ -118,7 +118,6 @@ void Map::buildCoarseGrid() {
 	int _newMapWidth = mapWidth / (ROBOT_SIZE_DOUBLE);
 
 	coarseGrid.resize(_newMapHeight);
-
 	for (int i = 0; i < _newMapHeight; i++)
 		coarseGrid[i].resize(_newMapWidth);
 
@@ -139,6 +138,7 @@ void Map::buildCoarseGrid() {
 
 	printGrid(coarseGrid);
 }
+
 
 
 

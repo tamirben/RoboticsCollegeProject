@@ -8,7 +8,6 @@
 #include "Node.h"
 
 Node::Node(int row, int col) : row(row), col(col), visited(false) {
-	// TODO Auto-generated constructor stub
 
 }
 

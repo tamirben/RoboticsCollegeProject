@@ -14,7 +14,7 @@ using namespace std;
 class Node {
 public:
 	int row, col;
-	bool visited;
+	bool visited; // visited = true for both visited node or unwalkable node.
 	vector<Node *> neighborsInSpanningTree;
 
 	Node(int row, int col);

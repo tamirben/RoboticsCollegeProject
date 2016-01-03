@@ -7,12 +7,13 @@
 
 #ifndef STC_H_
 #define STC_H_
-
+#define access(X,Y) ((X) < (Y) ? (true) : (false))
 #include "Map.h"
 #include "Node.h"
 using namespace std;
 
-typedef pair<int, int> Position;
+typedef pair<int, int> Position; //The Position will have to be the 
+//Node Position (Node Coordinates and not pixels)
 
 class STC {
 private:
@@ -23,7 +24,6 @@ private:
 // one node is 24 pixels.
 	void buildGraph();
 	void DFS(Node *node);
-	void getNeighbors(Node* node);
 public:
 	STC(Map &map, Position startPos);
 	void buildSpanningTree();

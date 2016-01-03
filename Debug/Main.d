@@ -1,3 +1,5 @@
-Main.o: ../Main.cpp ../Map.h
+Main.o: ../Main.cpp ../Map.h ../Node.h
 
 ../Map.h:
+
+../Node.h:
